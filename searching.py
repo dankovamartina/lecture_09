@@ -51,13 +51,47 @@ def linear_search(sekvence, cislo):
             search_res["count"] = search_res["count"]+1
     return search_res
 
+    # analyza asymptoticke slozitosti:
+    # nejhorsi a nejlepsi scenar vzdykcy vyjsou stejne, protoze hledame vsechny vyskyty a musime to stejne projet cele
+    # vzdycky to bude O(n)
+
+#moje reseni, ktere pry slo o krok dopredu :-)
+def pattern_search(sekvence, vzor):
+    """
+    :param sekvence: prohledavana sekvence
+    :param vzor: porovnavany vzor, muze mit ruznou delku!
+    :return: mnozina ve ktere jsou ulozeny pozice vyskytu v sekvenci
+    """
+    delka = len(vzor)
+    mnozina = set()
+    for j in range(0, len(sekvence)-delka + 1):
+        pomocna = 0
+        for i in range(0, delka):
+            if pomocna == 0:
+                if sekvence[j+i] != vzor[i]:
+                    pomocna = 1
+        if pomocna == 0:
+            mnozina.add(j)
+    return mnozina
+#tak jak jsme to v hodine delali vzorove:
+def vzorak_pattern_search(sequence, pattern):
+    positions = set()
+    index = 0
+    while index < len(sequence) - len(pattern):
+        if sequence[index:index + len(pattern)] == pattern:
+            positions.add(index)
+        index = index + 1
+    return positions
+
 
 
 def main():
-    sequential_data = read_data("sequential.json", "unordered_numbers")
-    print(sequential_data)
-    print(linear_search(sequential_data, 0))
-
+    sekvenceDNA = read_data("sequential.json", "dna_sequence")
+    print(sekvenceDNA)
+    print(pattern_search(sekvenceDNA, "ATA"))
+    print(vzorak_pattern_search(sekvenceDNA, "ATA"))
 
 if __name__ == '__main__':
     main()
+
+
