@@ -24,7 +24,7 @@ def read_data(file_name, field):
 
  #napred osetrime, jeslti je pozadovany klic field v MNOZINE pozadovanych reseni
  #klice nahazime do mnoziny prikazem set
-    if field not in set(data.keys):
+    if field not in set(data.keys()):
         return None
     return data[field]  # vracime jen kousek toho slovniku podle klice
 
