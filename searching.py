@@ -29,9 +29,27 @@ def read_data(file_name, field):
     return data[field]  # vracime jen kousek toho slovniku podle klice
 
 
+def linear_search(sekvence, cislo):
+    """
+    :param sekvence: prohledavana sekvence (seznam)
+    :param cislo: hledane cislo (int)
+    :return: slovnik se dvema klici, prvni klic je "positions" - seznam pozic, indexu a druhy klic je "count" - pocet vyskytu hledaneho cisla
+    """
+    positions = []
+    count = 0
+    for i in range(0, len(sekvence)):
+        if sekvence[i] == cislo:
+            count = count + 1
+            positions.append(i)
+    return {"positions": positions, "count": count}
+
+
+
+
 def main():
     sequential_data = read_data("sequential.json", "unordered_numbers")
     print(sequential_data)
+    print(linear_search(sequential_data, 0))
 
 
 if __name__ == '__main__':
