@@ -73,16 +73,24 @@ def pattern_search(sekvence, vzor):
         if pomocna == 0:
             mnozina.add(j)
     return mnozina
+
 #tak jak jsme to v hodine delali vzorove:
 def vzorak_pattern_search(sequence, pattern):
     positions = set()
     index = 0
     while index < len(sequence) - len(pattern):
-        if sequence[index:index + len(pattern)] == pattern:
+        idx = 0
+        for letter in sequence[index:index + len(pattern)]:
+            if letter != pattern[idx]:
+                #tady bychom potrebovali prerusit rovnou ten while - breakem
+                break
+            else:
+                idx = idx + 1
+        if idx == len(pattern):
             positions.add(index)
         index = index + 1
     return positions
-
+    #asymptoticka slozitost je delka vzoru * delka sekvence
 
 
 def main():
