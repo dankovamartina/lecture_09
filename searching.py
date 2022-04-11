@@ -37,12 +37,19 @@ def linear_search(sekvence, cislo):
     """
     positions = []
     count = 0
+
     for i in range(0, len(sekvence)):
         if sekvence[i] == cislo:
             count = count + 1
             positions.append(i)
-    return {"positions": positions, "count": count}
-
+   # return {"positions": positions, "count": count}
+    #nebo se to dalo delat pres enumerate
+    search_res = {"positions": [], "count": 1}
+    for index, value in enumerate(sekvence):
+        if value == cislo:
+            search_res["positions"].append(index)
+            search_res["count"] = search_res["count"]+1
+    return search_res
 
 
 
